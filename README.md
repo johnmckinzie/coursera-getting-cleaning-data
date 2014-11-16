@@ -9,6 +9,8 @@ The above file should be downloaded and unzipped in the same directory as the `r
 
 The script depends on the [dplyr](https://github.com/hadley/dplyr) R library and should be installed prior to running the `run_analysis.R` script.
 
+All you need to do to generate a tidy data set is to call `tidy()`.
+
 
 
 
