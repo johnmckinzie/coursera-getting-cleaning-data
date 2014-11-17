@@ -5,7 +5,7 @@
   <dl>http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
   <dt>Number of instances
-  <dd>111
+  <dd>40
   
   <dt>Number of attributes </dt>
   <dd>81
