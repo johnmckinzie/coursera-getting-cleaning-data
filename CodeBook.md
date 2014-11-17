@@ -11,7 +11,7 @@
   <dd>81
 </dl>
 
-The following describes the data set generated using the `tidy()` function. The data set contains the mean of all the mean and standard deviation attributes from both the original test and training data (rows were merged), grouped by activity and subject.
+The following describes the data set generated using the `tidy_samsung_means()` function. The data set contains the mean of all the mean and standard deviation attributes from both the original test and training data (rows were merged), grouped by activity and subject.
 
 ## Attributes
 
