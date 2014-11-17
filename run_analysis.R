@@ -14,35 +14,21 @@ tidy_samsung_means <- function() {
   test_set_path <- "test/X_test.txt"
   test_labels_path <- "test/y_test.txt"
   test_subject_path <- "test/subject_test.txt"
+  outfile_path <- "tidy_samsung_means.txt"
   
-  rows <- -1
-  
-  if (rows > 0) {
-    print_rows <- seq(1, rows, length = 5) 
-    print_rows_merged <- seq(1, 2 * rows, length = 5)
-  }
-  
-  # load training set
-  print("===== Training ======")
+  # load training and test sets
   training <- load_set(root_dir, training_set_path, training_labels_path, training_subject_path)
-  if (rows > 0) print(training[print_rows, 1:6])
-
-  # load test set
-  print("===== Test ======")
   test <- load_set(root_dir, test_set_path, test_labels_path, test_subject_path)
-  if (rows > rows) print(test[print_rows, 1:6])
 
   # merge training and test observations
-  print("===== Merged ======")
   merged <- rbind(training, test)
-  if (rows > rows) print(merged[print_rows_merged, 1:6])
 
   # use dplyr to get mean of each variable grouped by activity and subject
   merged_tbl <- tbl_df(merged)
   data_set <- merged_tbl %>% group_by(Activity, Subject) %>% summarise_each(funs(mean))
-  print(nrow(data_set))
-  print(colnames(data_set))
-  data_set
+
+  # write new table to file
+  write.table(data_set, outfile_path, row.names = FALSE)
 }
 
 load_set <- function(root_dir, set_path, labels_path, subject_path, rows = -1) {
@@ -66,11 +52,11 @@ load_set <- function(root_dir, set_path, labels_path, subject_path, rows = -1) {
   data_labels <- read.table(file.path(root_dir, labels_path), header = FALSE, nrows = rows)
   data_labels <- merge(data_labels, activity_labels, by.x = 1, by.y = 1)
   colnames(data_labels) <- c("ActivityIndex", "Activity")
-  data <- cbind(data_labels[2], data_set)
+  data_set <- cbind(data_labels[2], data_set)
   
   # add subject column
   subject <- read.table(file.path(root_dir, subject_path), header = FALSE, nrows = rows)
-  data <- cbind(subject, data)
-  colnames(data)[1] <- "Subject"
-  data
+  data_set <- cbind(subject, data_set)
+  colnames(data_set)[1] <- "Subject"
+  data_set
 }
