@@ -17,9 +17,10 @@ Below is an example of how to generate a tidy data:
 
 ```
 source("run_analysis.R")
-tidy_data_set <- tidy()
+tidy_data_set <- tidy_samsung_means()
 ```
 
+For a description of the data set produced by `tidy_samsung_means()` can be found in the [Data Set Code Book](https://github.com/johnmckinzie/coursera-getting-cleaning-data/blob/master/CodeBook.md)
 
 
 
